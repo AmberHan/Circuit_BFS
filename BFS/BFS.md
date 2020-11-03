@@ -12,3 +12,6 @@
 - 门构造复杂：X,CX,Z,H,S,Sdg,T,Tdg(无CCX)
 - 变化函数：type_circuit(生成门函数),com_circuit(递归函数)
 - 代码目前找到SWap门，请输入：2
+
+# cal_matrix文件：
+- 根据Toffoli.tfc计算电路矩阵
