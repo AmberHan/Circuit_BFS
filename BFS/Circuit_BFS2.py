@@ -39,11 +39,19 @@ Swap_unitary = np.mat([
     [0, 1, 0, 0],
     [0, 0, 0, 1]
 ])
+V = np.dot(np.mat([
+    [1, -I],
+    [-I, 1]
+]), (1+I)/2)
 
 
 # 对角矩阵
 def e(n):
     return np.mat(np.diag([1] * (2 ** n)))
+
+
+# 控制V门
+C_V = np.kron(U00, e(1)) + np.kron(U11, V)
 
 
 # 单量子门算矩阵
@@ -175,7 +183,7 @@ def com_circuit(plies_node_list, type_all):
                 node_cost = node.cost + circuit_i[1]
                 node_new = EveryNode(node, circuit_i[0], node_cost, circuit_new_unitary)
                 node.add_children(node_new)
-                if (circuit_new_unitary == Swap_unitary).all():
+                if (circuit_new_unitary == C_V).all():
                 # if (circuit_new_unitary == Toffi).all():
                     plies_node.put(node_new)
                     result_dict[unitary_tuple_new] = [node_cost, node_new]
