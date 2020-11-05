@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5998128-7b36-4c27-84e1-70966bdc50b7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/COMMIT.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BFS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BFS/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BFS/Circuit_BFS1.1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BFS/Circuit_BFS3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BFS/Circuit_BFS1.py" beforeDir="false" afterPath="$PROJECT_DIR$/BFS/Circuit_BFS1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BFS/Circuit_BFS2.py" beforeDir="false" afterPath="$PROJECT_DIR$/BFS/Circuit_BFS2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cal_matrix/Toffoli.tfc" beforeDir="false" afterPath="$PROJECT_DIR$/cal_matrix/Toffoli.tfc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cal_matrix/matrix_quantum_circuit.py" beforeDir="false" afterPath="$PROJECT_DIR$/cal_matrix/matrix_quantum_circuit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/COMMIT.md" beforeDir="false" afterPath="$PROJECT_DIR$/COMMIT.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,20 +21,41 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="989">
-              <caret line="49" column="12" lean-forward="true" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
+            <state relative-caret-position="191">
+              <caret line="172" column="41" lean-forward="true" selection-start-line="168" selection-start-column="8" selection-end-line="172" selection-end-column="41" />
+              <folding>
+                <element signature="e#120#131#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="115">
-                <caret line="5" column="4" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-              </first_editor>
-              <second_editor />
+        <entry file="file://D:/1/venv/Lib/site-packages/cirq/circuits/circuit.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="121">
+              <caret line="1373" selection-start-line="1373" selection-end-line="1373" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://D:/1/venv/Lib/site-packages/cirq/ops/op_tree.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="203">
+              <caret line="186" selection-start-line="186" selection-end-line="186" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS3.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="53">
+              <caret line="201" column="45" lean-forward="true" selection-start-line="201" selection-start-column="45" selection-end-line="201" selection-end-column="45" />
+              <folding>
+                <element signature="e#120#131#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -42,19 +64,46 @@
         <entry file="file://$PROJECT_DIR$/COMMIT.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="46">
-                <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+              <first_editor relative-caret-position="69">
+                <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
               </first_editor>
               <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="37">
+                <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="775">
-              <caret line="84" column="45" lean-forward="true" selection-start-line="84" selection-start-column="45" selection-end-line="84" selection-end-column="45" />
+            <state relative-caret-position="204">
+              <caret line="90" column="28" selection-start-line="90" selection-start-column="19" selection-end-line="90" selection-end-column="28" />
+              <folding>
+                <element signature="e#120#131#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS1.1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-782">
+              <caret line="86" column="24" lean-forward="true" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
+              <folding>
+                <element signature="e#120#131#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -62,8 +111,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cal_matrix/matrix_quantum_circuit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="5" column="11" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+            <state relative-caret-position="-1472">
+              <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -79,11 +128,21 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>dot</find>
       <find>circuit_matrix</find>
       <find>print</find>
+      <find>type_all</find>
+      <find>make_circuit</find>
+      <find>make</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -96,25 +155,18 @@
         <option value="$USER_HOME$/AppData/Local/Temp/Rar$DIa14860.014/matrix_quantum_circuit.py" />
         <option value="$PROJECT_DIR$/cal_matrix/matrix_quantum_circuit.py" />
         <option value="$PROJECT_DIR$/cal_matrix/Toffoli.tfc" />
+        <option value="$PROJECT_DIR$/BFS/Circuit_BFS1.1.py" />
+        <option value="$PROJECT_DIR$/COMMIT.md" />
         <option value="$PROJECT_DIR$/BFS/Circuit_BFS1.py" />
         <option value="$PROJECT_DIR$/BFS/Circuit_BFS2.py" />
-        <option value="$PROJECT_DIR$/COMMIT.md" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/Circuit_BFS.iml" />
-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
-        <option value="$PROJECT_DIR$/.idea/misc.xml" />
-        <option value="$PROJECT_DIR$/.idea/modules.xml" />
+        <option value="$PROJECT_DIR$/BFS/Circuit_BFS3.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2223" />
-    <option name="y" value="147" />
+    <option name="x" value="277" />
+    <option name="y" value="307" />
     <option name="width" value="1401" />
     <option name="height" value="1002" />
   </component>
@@ -123,7 +175,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -145,9 +196,11 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
@@ -184,6 +237,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Circuit_BFS1.1" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Circuit_BFS" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="D:\1\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/BFS" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BFS/Circuit_BFS1.1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Circuit_BFS2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Circuit_BFS" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -205,19 +279,19 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="matrix_quantum_circuit (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Circuit_BFS3" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Circuit_BFS" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$USER_HOME$/AppData/Local/Temp/Rar$DIa14860.7950" />
+      <option name="SDK_HOME" value="D:\1\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/BFS" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$USER_HOME$/AppData/Local/Temp/Rar$DIa14860.7950/matrix_quantum_circuit.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BFS/Circuit_BFS3.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -250,15 +324,17 @@
     <list>
       <item itemvalue="Python.Circuit_BFS2" />
       <item itemvalue="Python.matrix_quantum_circuit" />
-      <item itemvalue="Python.matrix_quantum_circuit (1)" />
       <item itemvalue="Python.Circuit_BFS1" />
+      <item itemvalue="Python.Circuit_BFS1.1" />
+      <item itemvalue="Python.Circuit_BFS3" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.Circuit_BFS2" />
         <item itemvalue="Python.Circuit_BFS1" />
+        <item itemvalue="Python.Circuit_BFS3" />
+        <item itemvalue="Python.Circuit_BFS1.1" />
         <item itemvalue="Python.matrix_quantum_circuit" />
-        <item itemvalue="Python.matrix_quantum_circuit (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -276,15 +352,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1913" y="-7" width="1295" height="695" extended-state="6" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2494043" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15409055" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.46003553" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.25577265" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.37477797" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -318,28 +394,10 @@
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa16056.27439/matrix_quantum_circuit.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa8756.32334/matrix_quantum_circuit.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa14860.34593/matrix_quantum_circuit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="16" lean-forward="true" selection-end-line="147" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa14860.34593/matrix_quantum_circuit.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa14860.7950/matrix_quantum_circuit.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa14860.15339/matrix_quantum_circuit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="20" column="43" lean-forward="true" selection-end-line="147" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa14860.014/matrix_quantum_circuit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="120" column="26" lean-forward="true" selection-start-line="101" selection-end-line="120" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa14860.15339/matrix_quantum_circuit.py" />
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa14860.014/matrix_quantum_circuit.py" />
     <entry file="file://$PROJECT_DIR$/cal_matrix/Toffoli.tfc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -349,42 +407,82 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cal_matrix/matrix_quantum_circuit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="11" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="989">
-          <caret line="49" column="12" lean-forward="true" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
+        <state relative-caret-position="-1472">
+          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/COMMIT.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="46">
-            <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+          <first_editor relative-caret-position="69">
+            <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/1/venv/Lib/site-packages/cirq/ops/op_tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="186" selection-start-line="186" selection-end-line="186" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/1/venv/Lib/site-packages/cirq/circuits/circuit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="1373" selection-start-line="1373" selection-end-line="1373" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="90" column="28" selection-start-line="90" selection-start-column="19" selection-end-line="90" selection-end-column="28" />
+          <folding>
+            <element signature="e#120#131#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="172" column="41" lean-forward="true" selection-start-line="168" selection-start-column="8" selection-end-line="172" selection-end-column="41" />
+          <folding>
+            <element signature="e#120#131#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS1.1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-782">
+          <caret line="86" column="24" lean-forward="true" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
+          <folding>
+            <element signature="e#120#131#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="115">
-            <caret line="5" column="4" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+          <first_editor relative-caret-position="37">
+            <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS1.py">
+    <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="775">
-          <caret line="84" column="45" lean-forward="true" selection-start-line="84" selection-start-column="45" selection-end-line="84" selection-end-column="45" />
+        <state relative-caret-position="53">
+          <caret line="201" column="45" lean-forward="true" selection-start-line="201" selection-start-column="45" selection-end-line="201" selection-end-column="45" />
+          <folding>
+            <element signature="e#120#131#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

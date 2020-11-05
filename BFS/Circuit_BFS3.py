@@ -16,6 +16,7 @@ sys.setrecursionlimit(100000)
 
 # result_dict结果真值表 key:真值表;value:[代价,node]
 result_dict = {}
+reserve_dict = {}
 # sympy 的符号运算
 u11 = Symbol('u11')
 u12 = Symbol('u12')
@@ -176,56 +177,74 @@ def make_circuit(truth_tuple, type_all):
 
 # 广度优先,循环寻找最优解(递归)
 # type_all:基本元情况； node:父节点
-def com_circuit(plies_node, type_all):
-    while not plies_node.empty():
-        plies_node_list_size = plies_node.qsize()
-        # 广度优先，每层遍历
-        for i in range(plies_node_list_size):
-            node = plies_node.get()
-            if node.child == 0:  # 节点非最优
+def com_circuit(plies_node, plies_node1, type_all):
+    while not plies_node.empty() or plies_node1.empty():
+        plies_node = two_queue(plies_node, type_all, result_dict, reserve_dict)
+        plies_node1 = two_queue(plies_node1, type_all, reserve_dict, result_dict)
+
+
+def two_queue(plies_node, type_all, result_dict1, reserve_dict1):
+    plies_node_list_size = plies_node.qsize()
+    # 双向广度优先，每层遍历
+    for i in range(plies_node_list_size):
+        node = plies_node.get()
+        if node.child == 0:  # 节点非最优
+            continue
+        for circuit_i in range(len(type_all)):
+            if circuit_i == node.my_type:  # 相同的会抵消,不考虑
                 continue
-            for circuit_i in range(len(type_all)):
-                if circuit_i == node.my_type:  # 相同的会抵消,不考虑
-                    continue
+            else:
+                # 优化后 自己算的矩阵
+                circuit_new_unitary = simply_unity(np.dot(type_all[circuit_i][2], node.unitary))
+                unitary_tuple_new = [i for item in circuit_new_unitary for i in item]
+                unitary_tuple_new = tuple(unitary_tuple_new)
+                node_cost = node.cost + type_all[circuit_i][1]
+                node_new = EveryNode(node, circuit_i, node_cost, circuit_new_unitary)
+                node.add_children(node_new)
+                if unitary_tuple_new in reserve_dict1:
+                    result_dict1[unitary_tuple_new] = [node_cost, node_new]
+                    circuit = cirq.Circuit()
+                    # 修改非result的查找
+                    circuit_list, min_total_cost = make_circuit(unitary_tuple_new, type_all)
+                    circuit.append(circuit_list)
+                    print(circuit)
+                    print('此真正表最低代价为：{}'.format(min_total_cost))
+                    return
+                # print(C_V)
+                if (circuit_new_unitary == Swap_unitary).all():  # Toffi、C_V
+                    plies_node.put(node_new)
+                    result_dict1[unitary_tuple_new] = [node_cost, node_new]
+                    circuit = cirq.Circuit()
+                    circuit_list, min_total_cost = make_circuit(unitary_tuple_new, type_all)
+                    circuit.append(circuit_list)
+                    print(circuit)
+                    print('此真正表最低代价为：{}'.format(min_total_cost))
+                    return
+                if unitary_tuple_new not in result_dict1:  # 新的解答
+                    # print('目前解数目：{}'.format(len(result_dict)))
+                    plies_node.put(node_new)
+                    result_dict1[unitary_tuple_new] = [node_cost, node_new]
+                elif unitary_tuple_new in result_dict1 and result_dict1[unitary_tuple_new][0] > node_cost:  # 更优解
+                    plies_node.put(node_new)
+                    node_get = result_dict1[unitary_tuple_new][1]  # 找到非优解进行child=0,child_list置空操作
+                    node_get.clear_children()
+                    result_dict1[unitary_tuple_new] = [node_cost, node_new]  # 更新真值字典
                 else:
-                    # 优化后 自己算的矩阵
-                    circuit_new_unitary = simply_unity(np.dot(type_all[circuit_i][2], node.unitary))
-                    unitary_tuple_new = [i for item in circuit_new_unitary for i in item]
-                    unitary_tuple_new = tuple(unitary_tuple_new)
-                    node_cost = node.cost + type_all[circuit_i][1]
-                    node_new = EveryNode(node, circuit_i, node_cost, circuit_new_unitary)
-                    node.add_children(node_new)
-                    # print(C_V)
-                    if (circuit_new_unitary == Swap_unitary).all():  # Toffi、C_V
-                        plies_node.put(node_new)
-                        result_dict[unitary_tuple_new] = [node_cost, node_new]
-                        circuit = cirq.Circuit()
-                        circuit_list, min_total_cost = make_circuit(unitary_tuple_new, type_all)
-                        circuit.append(circuit_list)
-                        print(circuit)
-                        print('此真正表最低代价为：{}'.format(min_total_cost))
-                        return
-                    if unitary_tuple_new not in result_dict:  # 新的解答
-                        # print('目前解数目：{}'.format(len(result_dict)))
-                        plies_node.put(node_new)
-                        result_dict[unitary_tuple_new] = [node_cost, node_new]
-                    elif unitary_tuple_new in result_dict and result_dict[unitary_tuple_new][0] > node_cost:  # 更优解
-                        plies_node.put(node_new)
-                        node_get = result_dict[unitary_tuple_new][1]  # 找到非优解进行child=0,child_list置空操作
-                        node_get.clear_children()
-                        result_dict[unitary_tuple_new] = [node_cost, node_new]  # 更新真值字典
-                    else:
-                        node_new.clear_children()
-                        continue
+                    node_new.clear_children()
+                    continue
+    return plies_node
 
 
 # 初始化
 def init_truth(n):
     circuit_unitary = np.identity(2 ** n)
-    node_0 = EveryNode(None, 0, 0, circuit_unitary)
+    node_0 = EveryNode(None, None, 0, circuit_unitary)
+    node_1 = EveryNode(None, None, 0, Swap_unitary)
     tree_queue = queue.Queue()
     tree_queue.put(node_0)
-    com_circuit(tree_queue, type_circuit(n))
+    tree_queue1 = queue.Queue()
+    tree_queue1.put(node_1)
+    com_circuit(tree_queue, tree_queue1, type_circuit(n))
     print('(数组列表):[代价，node标号]')
     # print(result_dict)
     print('真值表可表达的情况数目:{}'.format(len(result_dict)))
