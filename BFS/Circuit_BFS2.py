@@ -1,3 +1,9 @@
+# !/usr/bin/env python
+# !-*- coding:utf-8 -*-
+# !@Time   : 2020/11/5 19:13
+# !@Author : DongHan Yang
+# !@File   : .py
+
 import cirq
 from cirq import LineQubit
 import random
@@ -5,6 +11,7 @@ import numpy as np
 import sys
 import queue
 from sympy import *
+
 sys.setrecursionlimit(100000)
 
 # result_dict结果真值表 key:真值表;value:[代价,node]
@@ -42,7 +49,7 @@ Swap_unitary = np.mat([
 V = np.dot(np.mat([
     [1, -I],
     [-I, 1]
-]), (1+I)/2)
+]), (1 + I) / 2)
 
 
 # 对角矩阵
@@ -51,6 +58,10 @@ def e(n):
 
 
 # 控制V门
+# [[1,0 ,0, 0],
+#  [0, 1, 0, 0],
+#  [0, 0, 1/2 + I/2, -I*(1/2 + I/2)],
+#  [0, 0, -I*(1/2 + I/2), 1/2 + I/2]]
 C_V = np.kron(U00, e(1)) + np.kron(U11, V)
 
 
@@ -164,48 +175,48 @@ def make_circuit(truth_tuple):
 
 # 广度优先,循环寻找最优解(递归)
 # type_all:基本元情况； node:父节点
-def com_circuit(plies_node_list, type_all):
-    plies_node = queue.Queue()
-    if plies_node_list.empty():  # 结束标记
-        return
-    while not plies_node_list.empty():
-        node = plies_node_list.get()
-        if node.child == 0:  # 节点非最优
-            continue
-        for circuit_i in type_all:
-            if circuit_i[0] == node.my_type:  # 相同的会抵消,不考虑
+def com_circuit(plies_node, type_all):
+    while not plies_node.empty():
+        plies_node_list_size = plies_node.qsize()
+        # 广度优先，每层遍历
+        for i in range(plies_node_list_size):
+            node = plies_node.get()
+            if node.child == 0:  # 节点非最优
                 continue
-            else:
-                # 优化后 自己算的矩阵
-                circuit_new_unitary = simply_unity(np.dot(circuit_i[2], node.unitary))
-                unitary_tuple_new = [i for item in circuit_new_unitary for i in item]
-                unitary_tuple_new = tuple(unitary_tuple_new)
-                node_cost = node.cost + circuit_i[1]
-                node_new = EveryNode(node, circuit_i[0], node_cost, circuit_new_unitary)
-                node.add_children(node_new)
-                if (circuit_new_unitary == C_V).all():
-                # if (circuit_new_unitary == Toffi).all():
-                    plies_node.put(node_new)
-                    result_dict[unitary_tuple_new] = [node_cost, node_new]
-                    circuit = cirq.Circuit()
-                    circuit_list, min_total_cost = make_circuit(unitary_tuple_new)
-                    circuit.append(circuit_list)
-                    print(circuit)
-                    print('此真正表最低代价为：{}'.format(min_total_cost))
-                    return
-                if unitary_tuple_new not in result_dict:  # 新的解答
-                    # print('目前解数目：{}'.format(len(result_dict)))
-                    plies_node.put(node_new)
-                    result_dict[unitary_tuple_new] = [node_cost, node_new]
-                elif unitary_tuple_new in result_dict and result_dict[unitary_tuple_new][0] > node_cost:  # 更优解
-                    plies_node.put(node_new)
-                    node_get = result_dict[unitary_tuple_new][1]  # 找到非优解进行child=0,child_list置空操作
-                    node_get.clear_children()
-                    result_dict[unitary_tuple_new] = [node_cost, node_new]  # 更新真值字典
-                else:
-                    node_new.clear_children()
+            for circuit_i in type_all:
+                if circuit_i[0] == node.my_type:  # 相同的会抵消,不考虑
                     continue
-    com_circuit(plies_node, type_all)
+                else:
+                    # 优化后 自己算的矩阵
+                    circuit_new_unitary = simply_unity(np.dot(circuit_i[2], node.unitary))
+                    unitary_tuple_new = [i for item in circuit_new_unitary for i in item]
+                    unitary_tuple_new = tuple(unitary_tuple_new)
+                    node_cost = node.cost + circuit_i[1]
+                    node_new = EveryNode(node, circuit_i[0], node_cost, circuit_new_unitary)
+                    node.add_children(node_new)
+                    print(C_V)
+                    if (circuit_new_unitary == C_V).all():
+                        # if (circuit_new_unitary == Toffi).all():
+                        plies_node.put(node_new)
+                        result_dict[unitary_tuple_new] = [node_cost, node_new]
+                        circuit = cirq.Circuit()
+                        circuit_list, min_total_cost = make_circuit(unitary_tuple_new)
+                        circuit.append(circuit_list)
+                        print(circuit)
+                        print('此真正表最低代价为：{}'.format(min_total_cost))
+                        return
+                    if unitary_tuple_new not in result_dict:  # 新的解答
+                        # print('目前解数目：{}'.format(len(result_dict)))
+                        plies_node.put(node_new)
+                        result_dict[unitary_tuple_new] = [node_cost, node_new]
+                    elif unitary_tuple_new in result_dict and result_dict[unitary_tuple_new][0] > node_cost:  # 更优解
+                        plies_node.put(node_new)
+                        node_get = result_dict[unitary_tuple_new][1]  # 找到非优解进行child=0,child_list置空操作
+                        node_get.clear_children()
+                        result_dict[unitary_tuple_new] = [node_cost, node_new]  # 更新真值字典
+                    else:
+                        node_new.clear_children()
+                        continue
 
 
 # 初始化

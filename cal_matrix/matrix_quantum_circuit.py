@@ -1,9 +1,9 @@
 # 导入需要的包
 import numpy as np
+
 np.set_printoptions(threshold=np.inf)
 from sympy import *
 import time
-
 
 # sympy 的符号运算
 u11 = Symbol('u11')
@@ -14,10 +14,10 @@ u22 = Symbol('u22')
 # 使用到的门的矩阵
 NOT = np.mat([[0, 1], [1, 0]])
 Z = np.mat([[1, 0], [0, -1]])
-H = (1/sqrt(2)) * np.mat([[1, 1], [1, -1]])
+H = (1 / sqrt(2)) * np.mat([[1, 1], [1, -1]])
 S = np.mat([[1, 0], [0, I]])
-T = np.mat([[1, 0], [0, (1+I)/sqrt(2)]])
-Tct = np.mat([[1, 0], [0, (1-I)/sqrt(2)]])  # 矩阵T的共轭转置（Conjugate Transpose）
+T = np.mat([[1, 0], [0, (1 + I) / sqrt(2)]])
+Tct = np.mat([[1, 0], [0, (1 - I) / sqrt(2)]])  # 矩阵T的共轭转置（Conjugate Transpose）
 U00 = np.mat([[1, 0], [0, 0]])  # 二值逻辑|0><0|
 U11 = np.mat([[0, 0], [0, 1]])  # 二值逻辑|1><1|
 U = Matrix([[u11, u12], [u21, u22]])
@@ -27,7 +27,7 @@ def circuit_matrix(circuit):
     cir_u = e(len(circuit[0]))
     start_time = time.time()
     for i in circuit:
-        cir_u = np.dot(gate_matrix(i),cir_u) 
+        cir_u = np.dot(gate_matrix(i), cir_u)
         # print(cir_u)
     end_time = time.time()
     print("计算时间：{}".format(end_time - start_time))
@@ -118,29 +118,24 @@ def get_gates(source_file_path):
     # 截取 BEGIN 和 END 之间的电路门信息
     for i in range(lines.index("BEGIN") + 1, lines.index("END")):
         gates.append(lines[i].replace(",", " ").split(" "))
-    # print(gates)
-        return traverse(gates)
+        # print(gates)
+    return traverse(gates)
 
 
 # 主函数
 def cal_circuit_matrix(source_file_path):
     circuit = get_gates(source_file_path)
     cir = circuit_matrix(circuit)
-    cir_array = cir.getA()  #将一个矩阵转化为数组
+    cir_array = cir.getA()  # 将一个矩阵转化为数组
     # 遍历数组进行化简
     for i in range(len(cir_array)):
-	    for j in range(len(cir_array[i])):
-		    cir_array[i][j] = simplify(cir_array[i][j])
+        for j in range(len(cir_array[i])):
+            cir_array[i][j] = simplify(cir_array[i][j])
     print(cir_array)
 
 
 # 程序入口
 if __name__ == '__main__':
     # 电路源文件的地址
-    circuit_source_file_path = "D:\\desk\\comcircuit\\Toffoli.tfc"
+    circuit_source_file_path = ".\Toffoli.tfc"
     cal_circuit_matrix(circuit_source_file_path)
-
-
-
-
-
