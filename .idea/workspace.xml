@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5998128-7b36-4c27-84e1-70966bdc50b7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/BFS/Circuit_BFS1.1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BFS/Circuit_BFS3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BFS/Circuit_BFS1.py" beforeDir="false" afterPath="$PROJECT_DIR$/BFS/Circuit_BFS1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BFS/Circuit_BFS2.py" beforeDir="false" afterPath="$PROJECT_DIR$/BFS/Circuit_BFS2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/COMMIT.md" beforeDir="false" afterPath="$PROJECT_DIR$/COMMIT.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BFS/Circuit_BFS3.py" beforeDir="false" afterPath="$PROJECT_DIR$/BFS/Circuit_BFS3.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +15,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="172" column="41" lean-forward="true" selection-start-line="168" selection-start-column="8" selection-end-line="172" selection-end-column="41" />
+            <state relative-caret-position="181">
+              <caret line="198" column="66" selection-start-line="198" selection-start-column="23" selection-end-line="198" selection-end-column="66" />
               <folding>
                 <element signature="e#120#131#0" expanded="true" />
               </folding>
@@ -33,7 +27,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://D:/1/venv/Lib/site-packages/cirq/circuits/circuit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
+            <state relative-caret-position="31165">
               <caret line="1373" selection-start-line="1373" selection-end-line="1373" />
             </state>
           </provider>
@@ -42,7 +36,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://D:/1/venv/Lib/site-packages/cirq/ops/op_tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
+            <state relative-caret-position="4163">
               <caret line="186" selection-start-line="186" selection-end-line="186" />
             </state>
           </provider>
@@ -51,8 +45,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="53">
-              <caret line="201" column="45" lean-forward="true" selection-start-line="201" selection-start-column="45" selection-end-line="201" selection-end-column="45" />
+            <state relative-caret-position="155">
+              <caret line="36" column="52" lean-forward="true" selection-start-line="36" selection-start-column="52" selection-end-line="36" selection-end-column="52" />
               <folding>
                 <element signature="e#120#131#0" expanded="true" />
               </folding>
@@ -76,7 +70,7 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="37">
+              <first_editor relative-caret-position="46">
                 <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
               </first_editor>
               <second_editor />
@@ -87,8 +81,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="90" column="28" selection-start-line="90" selection-start-column="19" selection-end-line="90" selection-end-column="28" />
+            <state relative-caret-position="186">
+              <caret line="147" column="31" selection-start-line="147" selection-start-column="25" selection-end-line="147" selection-end-column="31" />
               <folding>
                 <element signature="e#120#131#0" expanded="true" />
               </folding>
@@ -99,7 +93,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS1.1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-782">
+            <state relative-caret-position="1863">
               <caret line="86" column="24" lean-forward="true" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
               <folding>
                 <element signature="e#120#131#0" expanded="true" />
@@ -111,7 +105,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cal_matrix/matrix_quantum_circuit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1472">
+            <state relative-caret-position="115">
               <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
             </state>
           </provider>
@@ -143,6 +137,7 @@
       <find>type_all</find>
       <find>make_circuit</find>
       <find>make</find>
+      <find>node_re</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -159,14 +154,14 @@
         <option value="$PROJECT_DIR$/COMMIT.md" />
         <option value="$PROJECT_DIR$/BFS/Circuit_BFS1.py" />
         <option value="$PROJECT_DIR$/BFS/Circuit_BFS2.py" />
-        <option value="$PROJECT_DIR$/BFS/Circuit_BFS3.py" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/BFS/Circuit_BFS3.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="277" />
-    <option name="y" value="307" />
+    <option name="x" value="276" />
+    <option name="y" value="306" />
     <option name="width" value="1401" />
     <option name="height" value="1002" />
   </component>
@@ -215,7 +210,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Circuit_BFS2">
+  <component name="RunManager" selected="Python.Circuit_BFS3">
     <configuration name="Circuit_BFS1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Circuit_BFS" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -330,9 +325,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Circuit_BFS3" />
         <item itemvalue="Python.Circuit_BFS2" />
         <item itemvalue="Python.Circuit_BFS1" />
-        <item itemvalue="Python.Circuit_BFS3" />
         <item itemvalue="Python.Circuit_BFS1.1" />
         <item itemvalue="Python.matrix_quantum_circuit" />
       </list>
@@ -353,14 +348,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15409055" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15409055" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.25577265" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.45293072" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.37477797" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -398,17 +392,17 @@
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa14860.7950/matrix_quantum_circuit.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa14860.15339/matrix_quantum_circuit.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa14860.014/matrix_quantum_circuit.py" />
-    <entry file="file://$PROJECT_DIR$/cal_matrix/Toffoli.tfc">
+    <entry file="file://D:/1/venv/Lib/site-packages/cirq/circuits/circuit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="31165">
+          <caret line="1373" selection-start-line="1373" selection-end-line="1373" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cal_matrix/matrix_quantum_circuit.py">
+    <entry file="file://D:/1/venv/Lib/site-packages/cirq/ops/op_tree.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1472">
-          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+        <state relative-caret-position="4163">
+          <caret line="186" selection-start-line="186" selection-end-line="186" />
         </state>
       </provider>
     </entry>
@@ -422,43 +416,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/1/venv/Lib/site-packages/cirq/ops/op_tree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="186" selection-start-line="186" selection-end-line="186" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/1/venv/Lib/site-packages/cirq/circuits/circuit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="1373" selection-start-line="1373" selection-end-line="1373" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="90" column="28" selection-start-line="90" selection-start-column="19" selection-end-line="90" selection-end-column="28" />
-          <folding>
-            <element signature="e#120#131#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="172" column="41" lean-forward="true" selection-start-line="168" selection-start-column="8" selection-end-line="172" selection-end-column="41" />
-          <folding>
-            <element signature="e#120#131#0" expanded="true" />
-          </folding>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="46">
+            <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS1.1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-782">
+        <state relative-caret-position="1863">
           <caret line="86" column="24" lean-forward="true" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
           <folding>
             <element signature="e#120#131#0" expanded="true" />
@@ -466,20 +436,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="37">
-            <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
-          </first_editor>
-          <second_editor />
+    <entry file="file://$PROJECT_DIR$/cal_matrix/matrix_quantum_circuit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cal_matrix/Toffoli.tfc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="198" column="66" selection-start-line="198" selection-start-column="23" selection-end-line="198" selection-end-column="66" />
+          <folding>
+            <element signature="e#120#131#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="147" column="31" selection-start-line="147" selection-start-column="25" selection-end-line="147" selection-end-column="31" />
+          <folding>
+            <element signature="e#120#131#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53">
-          <caret line="201" column="45" lean-forward="true" selection-start-line="201" selection-start-column="45" selection-end-line="201" selection-end-column="45" />
+        <state relative-caret-position="155">
+          <caret line="36" column="52" lean-forward="true" selection-start-line="36" selection-start-column="52" selection-end-line="36" selection-end-column="52" />
           <folding>
             <element signature="e#120#131#0" expanded="true" />
           </folding>

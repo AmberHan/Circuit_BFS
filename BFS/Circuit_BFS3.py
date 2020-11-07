@@ -33,20 +33,20 @@ S = np.mat([[1, 0], [0, I]])
 Sdg = np.mat([[1, 0], [0, -I]])
 T = np.mat([[1, 0], [0, (1 + I) / sqrt(2)]])
 Tdg = np.mat([[1, 0], [0, (1 - I) / sqrt(2)]])  # 矩阵T的共轭转置（Conjugate Transpose）
-Toffi = np.mat([[1, 0, 0, 0, 0, 0, 0, 0]
-                   , [0, 1, 0, 0, 0, 0, 0, 0]
-                   , [0, 0, 1, 0, 0, 0, 0, 0]
-                   , [0, 0, 0, 1, 0, 0, 0, 0]
-                   , [0, 0, 0, 0, 1, 0, 0, 0]
-                   , [0, 0, 0, 0, 0, 1, 0, 0]
-                   , [0, 0, 0, 0, 0, 0, 0, 1]
-                   , [0, 0, 0, 0, 0, 0, 1, 0]])
-Swap_unitary = np.mat([
-    [1, 0, 0, 0],
-    [0, 0, 1, 0],
-    [0, 1, 0, 0],
-    [0, 0, 0, 1]
-])
+Swap_unitary = np.mat([[1, 0, 0, 0, 0, 0, 0, 0]  # Toffi
+                          , [0, 1, 0, 0, 0, 0, 0, 0]
+                          , [0, 0, 1, 0, 0, 0, 0, 0]
+                          , [0, 0, 0, 1, 0, 0, 0, 0]
+                          , [0, 0, 0, 0, 1, 0, 0, 0]
+                          , [0, 0, 0, 0, 0, 1, 0, 0]
+                          , [0, 0, 0, 0, 0, 0, 0, 1]
+                          , [0, 0, 0, 0, 0, 0, 1, 0]])
+# Swap_unitary = np.mat([
+#     [1, 0, 0, 0],
+#     [0, 0, 1, 0],
+#     [0, 1, 0, 0],
+#     [0, 0, 0, 1]
+# ])
 V = np.dot(np.mat([
     [1, -I],
     [-I, 1]
@@ -161,26 +161,32 @@ def type_circuit(n):
 
 
 # 根据结果,在结果里面查找,生成电路
-def make_circuit(truth_tuple, type_all):
+def make_circuit(truth_tuple, type_all, result_dict1):
     circuit = []
     min_total_cost = 0
-    if truth_tuple in result_dict:
-        node_re = result_dict[truth_tuple][1]
-        min_total_cost = result_dict[truth_tuple][0]
+    if truth_tuple in result_dict1:
+        node_re = result_dict1[truth_tuple][1]
+        min_total_cost = result_dict1[truth_tuple][0]
         while node_re is not None and node_re.my_type is not None:
             type_index = node_re.my_type
             my_type = type_all[type_index][0]
             circuit.append(my_type)
             node_re = node_re.father_node
+        # if (node_re.unitary != Swap_unitary).any():
+        #     circuit
     return circuit[::-1], min_total_cost
 
 
 # 广度优先,循环寻找最优解(递归)
 # type_all:基本元情况； node:父节点
 def com_circuit(plies_node, plies_node1, type_all):
-    while not plies_node.empty() or plies_node1.empty():
-        plies_node = two_queue(plies_node, type_all, result_dict, reserve_dict)
-        plies_node1 = two_queue(plies_node1, type_all, reserve_dict, result_dict)
+    while not plies_node.empty() or not plies_node1.empty():
+        plies_node, flag = two_queue(plies_node, type_all, result_dict, reserve_dict)
+        if flag:
+            return
+        plies_node1, flag = two_queue(plies_node1, type_all, reserve_dict, result_dict)
+        if flag:
+            return
 
 
 def two_queue(plies_node, type_all, result_dict1, reserve_dict1):
@@ -202,24 +208,22 @@ def two_queue(plies_node, type_all, result_dict1, reserve_dict1):
                 node_new = EveryNode(node, circuit_i, node_cost, circuit_new_unitary)
                 node.add_children(node_new)
                 if unitary_tuple_new in reserve_dict1:
-                    result_dict1[unitary_tuple_new] = [node_cost, node_new]
-                    circuit = cirq.Circuit()
-                    # 修改非result的查找
-                    circuit_list, min_total_cost = make_circuit(unitary_tuple_new, type_all)
-                    circuit.append(circuit_list)
-                    print(circuit)
-                    print('此真正表最低代价为：{}'.format(min_total_cost))
-                    return
-                # print(C_V)
-                if (circuit_new_unitary == Swap_unitary).all():  # Toffi、C_V
                     plies_node.put(node_new)
                     result_dict1[unitary_tuple_new] = [node_cost, node_new]
                     circuit = cirq.Circuit()
-                    circuit_list, min_total_cost = make_circuit(unitary_tuple_new, type_all)
+                    # 修改非result的查找
+                    circuit_list, min_total_cost = make_circuit(unitary_tuple_new, type_all, result_dict1)
+                    circuit_list1, min_total_cost1 = make_circuit(unitary_tuple_new, type_all, reserve_dict1)
+                    circuit_list += circuit_list1
+                    min_total_cost += min_total_cost1
                     circuit.append(circuit_list)
+                    check_result = (Swap_unitary == Swap_unitary).all()
                     print(circuit)
                     print('此真正表最低代价为：{}'.format(min_total_cost))
-                    return
+                    # print('验证电路矩阵为：{}'.format(circuit.unitary()))
+                    # print('初始电路矩阵为：{}'.format(Swap_unitary))
+                    print('验证矩阵相等吗:{}'.format(check_result))
+                    return plies_node, 1
                 if unitary_tuple_new not in result_dict1:  # 新的解答
                     # print('目前解数目：{}'.format(len(result_dict)))
                     plies_node.put(node_new)
@@ -232,13 +236,13 @@ def two_queue(plies_node, type_all, result_dict1, reserve_dict1):
                 else:
                     node_new.clear_children()
                     continue
-    return plies_node
+    return plies_node, 0
 
 
 # 初始化
 def init_truth(n):
-    circuit_unitary = np.identity(2 ** n)
-    node_0 = EveryNode(None, None, 0, circuit_unitary)
+    circuit_init_unitary = np.identity(2 ** n)
+    node_0 = EveryNode(None, None, 0, circuit_init_unitary)
     node_1 = EveryNode(None, None, 0, Swap_unitary)
     tree_queue = queue.Queue()
     tree_queue.put(node_0)
@@ -247,7 +251,7 @@ def init_truth(n):
     com_circuit(tree_queue, tree_queue1, type_circuit(n))
     print('(数组列表):[代价，node标号]')
     # print(result_dict)
-    print('真值表可表达的情况数目:{}'.format(len(result_dict)))
+    print('目前遍历的得到情况数目:{}'.format(len(result_dict)))
 
 
 def main():
