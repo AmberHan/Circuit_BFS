@@ -2,7 +2,7 @@
 # !-*- coding:utf-8 -*-
 # !@Time   : 2020/11/4 20:43
 # !@Author : DongHan Yang
-# !@File   : .py
+# !@File   : Circuit_BFS1.py
 
 import cirq
 from cirq import LineQubit

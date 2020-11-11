@@ -2,7 +2,7 @@
 # !-*- coding:utf-8 -*-
 # !@Time   : 2020/11/5 19:13
 # !@Author : DongHan Yang
-# !@File   : .py
+# !@File   : Circuit_BFS2.py
 
 import cirq
 from cirq import LineQubit
@@ -143,9 +143,9 @@ def unitary_list(unitary):
 # 元电路生成[电路,代价,矩阵];X,CX,CCX
 def type_circuit(n):
     type_x = [[cirq.X(LineQubit(i)), 1, matrix_type(i, n, NOT)] for i in range(n)]
-    type_h = [[cirq.X(LineQubit(i)), 1, matrix_type(i, n, H)] for i in range(n)]
-    type_z = [[cirq.X(LineQubit(i)), 1, matrix_type(i, n, Z)] for i in range(n)]
-    type_s = [[cirq.X(LineQubit(i)), 1, matrix_type(i, n, S)] for i in range(n)]
+    type_h = [[cirq.H(LineQubit(i)), 1, matrix_type(i, n, H)] for i in range(n)]
+    type_z = [[cirq.Z(LineQubit(i)), 1, matrix_type(i, n, Z)] for i in range(n)]
+    type_s = [[cirq.S(LineQubit(i)), 1, matrix_type(i, n, S)] for i in range(n)]
     type_sdg = [[(cirq.S ** -1)(LineQubit(i)), 1, matrix_type(i, n, Sdg)] for i in range(n)]
     type_t = [[cirq.T(LineQubit(i)), 1, matrix_type(i, n, T)] for i in range(n)]
     type_tdg = [[(cirq.T ** -1)(LineQubit(i)), 1, matrix_type(i, n, Tdg)] for i in range(1, n)]

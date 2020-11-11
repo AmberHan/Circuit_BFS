@@ -2,7 +2,7 @@
 # !-*- coding:utf-8 -*-
 # !@Time   : 2020/11/5 19:13
 # !@Author : DongHan Yang
-# !@File   : .py
+# !@File   : Circuit_BFS3.py
 
 import cirq
 from cirq import LineQubit
@@ -12,7 +12,7 @@ import sys
 import queue
 from sympy import *
 
-sys.setrecursionlimit(100000)
+sys.setrecursionlimit(10000)
 
 # result_dict结果真值表 key:真值表;value:[代价,node]
 result_dict = {}
@@ -41,12 +41,12 @@ Swap_unitary = np.mat([[1, 0, 0, 0, 0, 0, 0, 0]  # Toffi
                           , [0, 0, 0, 0, 0, 1, 0, 0]
                           , [0, 0, 0, 0, 0, 0, 0, 1]
                           , [0, 0, 0, 0, 0, 0, 1, 0]])
-# Swap_unitary = np.mat([
-#     [1, 0, 0, 0],
-#     [0, 0, 1, 0],
-#     [0, 1, 0, 0],
-#     [0, 0, 0, 1]
-# ])
+Swap_unitary1 = np.mat([
+    [1, 0, 0, 0],
+    [0, 0, 1, 0],
+    [0, 1, 0, 0],
+    [0, 0, 0, 1]
+])
 V = np.dot(np.mat([
     [1, -I],
     [-I, 1]
@@ -63,7 +63,7 @@ def e(n):
 #  [0, 1, 0, 0],
 #  [0, 0, 1/2 + I/2, -I*(1/2 + I/2)],
 #  [0, 0, -I*(1/2 + I/2), 1/2 + I/2]]
-C_V = np.kron(U00, e(1)) + np.kron(U11, V)
+Swap_unitary1 = np.kron(U00, e(1)) + np.kron(U11, V)  # C_V
 
 
 # 单量子门算矩阵
@@ -144,9 +144,9 @@ def unitary_list(unitary):
 # 元电路生成[电路,代价,矩阵];X,CX,CCX
 def type_circuit(n):
     type_x = [[cirq.X(LineQubit(i)), 1, matrix_type(i, n, NOT)] for i in range(n)]
-    type_h = [[cirq.X(LineQubit(i)), 1, matrix_type(i, n, H)] for i in range(n)]
-    type_z = [[cirq.X(LineQubit(i)), 1, matrix_type(i, n, Z)] for i in range(n)]
-    type_s = [[cirq.X(LineQubit(i)), 1, matrix_type(i, n, S)] for i in range(n)]
+    type_h = [[cirq.H(LineQubit(i)), 1, matrix_type(i, n, H)] for i in range(n)]
+    type_z = [[cirq.Z(LineQubit(i)), 1, matrix_type(i, n, Z)] for i in range(n)]
+    type_s = [[cirq.S(LineQubit(i)), 1, matrix_type(i, n, S)] for i in range(n)]
     type_sdg = [[(cirq.S ** -1)(LineQubit(i)), 1, matrix_type(i, n, Sdg)] for i in range(n)]
     type_t = [[cirq.T(LineQubit(i)), 1, matrix_type(i, n, T)] for i in range(n)]
     type_tdg = [[(cirq.T ** -1)(LineQubit(i)), 1, matrix_type(i, n, Tdg)] for i in range(1, n)]
@@ -155,9 +155,18 @@ def type_circuit(n):
                if i != j]
     type_all = type_x + type_h + type_z + type_s + type_t + type_sdg + type_tdg + type_cx
     # type_all = type_cx
-    print('{}种情况\n'.format(len(type_all)))
     # print(type_all)
+    show_circuit(type_all)
+    print('一共{}种情况\n'.format(len(type_all)))
     return type_all
+
+
+# 显示原电路
+def show_circuit(type_all):
+    for i, circuit_i in enumerate(type_all):
+        circuit = cirq.Circuit(circuit_i[0])
+        print("第", i, "情况:\n")
+        print(circuit, "\n")
 
 
 # 根据结果,在结果里面查找,生成电路
