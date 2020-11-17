@@ -23,8 +23,14 @@ u12 = Symbol('u12')
 u21 = Symbol('u21')
 u22 = Symbol('u22')
 U = Matrix([[u11, u12], [u21, u22]])
-U00 = np.mat([[1, 0], [0, 0]])  # 二值逻辑|0><0|
-U11 = np.mat([[0, 0], [0, 1]])  # 二值逻辑|1><1|
+u0 = np.mat([1, 0])
+u1 = np.mat([0, 1])
+U00 = np.kron(u0, u0.T)
+U11 = np.kron(u1, u1.T)
+U01 = np.kron(u0, u1.T)
+U10 = np.kron(u1, u0.T)
+# U00 = np.mat([[1, 0], [0, 0]])  # 二值逻辑|0><0|
+# U11 = np.mat([[0, 0], [0, 1]])  # 二值逻辑|1><1|
 # 使用到的门的矩阵
 NOT = np.mat([[0, 1], [1, 0]])
 Z = np.mat([[1, 0], [0, -1]])
@@ -33,24 +39,27 @@ S = np.mat([[1, 0], [0, I]])
 Sdg = np.mat([[1, 0], [0, -I]])
 T = np.mat([[1, 0], [0, (1 + I) / sqrt(2)]])
 Tdg = np.mat([[1, 0], [0, (1 - I) / sqrt(2)]])  # 矩阵T的共轭转置（Conjugate Transpose）
-Swap_unitary = np.mat([[1, 0, 0, 0, 0, 0, 0, 0]  # Toffi
-                          , [0, 1, 0, 0, 0, 0, 0, 0]
-                          , [0, 0, 1, 0, 0, 0, 0, 0]
-                          , [0, 0, 0, 1, 0, 0, 0, 0]
-                          , [0, 0, 0, 0, 1, 0, 0, 0]
-                          , [0, 0, 0, 0, 0, 1, 0, 0]
-                          , [0, 0, 0, 0, 0, 0, 0, 1]
-                          , [0, 0, 0, 0, 0, 0, 1, 0]])
-Swap_unitary1 = np.mat([
-    [1, 0, 0, 0],
-    [0, 0, 1, 0],
-    [0, 1, 0, 0],
-    [0, 0, 0, 1]
-])
 V = np.dot(np.mat([
     [1, -I],
     [-I, 1]
 ]), (1 + I) / 2)
+# Swap = np.mat([
+#     [1, 0, 0, 0],
+#     [0, 0, 1, 0],
+#     [0, 1, 0, 0],
+#     [0, 0, 0, 1]
+# ])
+Swap = np.kron(U00, U00) + np.kron(U01, U10) + np.kron(U10, U01) + np.kron(U11, U11)
+# 查找电路，Toffi,C_V
+Toffi = np.mat([[1, 0, 0, 0, 0, 0, 0, 0]
+                   , [0, 1, 0, 0, 0, 0, 0, 0]
+                   , [0, 0, 1, 0, 0, 0, 0, 0]
+                   , [0, 0, 0, 1, 0, 0, 0, 0]
+                   , [0, 0, 0, 0, 1, 0, 0, 0]
+                   , [0, 0, 0, 0, 0, 1, 0, 0]
+                   , [0, 0, 0, 0, 0, 0, 0, 1]
+                   , [0, 0, 0, 0, 0, 0, 1, 0]])
+Result_unitary = Swap
 
 
 # 对角矩阵
@@ -63,7 +72,7 @@ def e(n):
 #  [0, 1, 0, 0],
 #  [0, 0, 1/2 + I/2, -I*(1/2 + I/2)],
 #  [0, 0, -I*(1/2 + I/2), 1/2 + I/2]]
-Swap_unitary1 = np.kron(U00, e(1)) + np.kron(U11, V)  # C_V
+C_V = np.kron(U00, e(1)) + np.kron(U11, V)
 
 
 # 单量子门算矩阵
@@ -153,7 +162,12 @@ def type_circuit(n):
     type_cx = [[cirq.CNOT(LineQubit(i), LineQubit(j)), 3, matrix_type1(i, j, n, NOT)] for i in range(n) for j in
                range(n)
                if i != j]
-    type_all = type_x + type_h + type_z + type_s + type_t + type_sdg + type_tdg + type_cx
+    type_cz = [[cirq.CZ(LineQubit(i), LineQubit(j)), 3, matrix_type1(i, j, n, Z)] for i in range(n) for j in
+               range(n)
+               if i != j]
+    type_swap = [[cirq.SWAP(LineQubit(i), LineQubit(j)), 9, matrix_type(i, n, S)] for i in range(n) for j in
+                 range(i+1, n)]
+    type_all = type_x + type_h + type_z + type_s + type_t + type_sdg + type_tdg + type_cx + type_cz + type_swap
     # type_all = type_cx
     # print(type_all)
     show_circuit(type_all)
@@ -226,7 +240,7 @@ def two_queue(plies_node, type_all, result_dict1, reserve_dict1):
                     circuit_list += circuit_list1
                     min_total_cost += min_total_cost1
                     circuit.append(circuit_list)
-                    check_result = (Swap_unitary == Swap_unitary).all()
+                    check_result = (Swap == Result_unitary).all()
                     print(circuit)
                     print('此真正表最低代价为：{}'.format(min_total_cost))
                     # print('验证电路矩阵为：{}'.format(circuit.unitary()))
@@ -252,7 +266,8 @@ def two_queue(plies_node, type_all, result_dict1, reserve_dict1):
 def init_truth(n):
     circuit_init_unitary = np.identity(2 ** n)
     node_0 = EveryNode(None, None, 0, circuit_init_unitary)
-    node_1 = EveryNode(None, None, 0, Swap_unitary)
+    print(Swap)
+    node_1 = EveryNode(None, None, 0, Result_unitary)
     tree_queue = queue.Queue()
     tree_queue.put(node_0)
     tree_queue1 = queue.Queue()
