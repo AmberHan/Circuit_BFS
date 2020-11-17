@@ -122,6 +122,34 @@ def matrix_type1(i, j, n, matrix1) -> Matrix:
     return matrix1
 
 
+def matrix_type2(i, j, n, matrix1) -> Matrix:
+    time = 2
+    matrix2 = e(n)
+    matrix3 = matrix1
+    while time:
+        cal_num = 0
+        matrix1 = matrix3
+        for k in range(n):
+            k = n - k - 1
+            if k != i and k != j and k < j:
+                cal_num += 1
+                matrix1 = np.kron(e(1), matrix1)
+            elif k != i and k != j and k > j:
+                cal_num += 1
+                matrix1 = np.kron(matrix1, e(1))
+            elif k == i and i < j:
+                cal_num += 1
+                matrix1 = np.kron(U00, e(cal_num)) + np.kron(U11, matrix1)
+            elif k == i and i > j:
+                cal_num += 1
+                matrix1 = np.kron(e(cal_num), U00) + np.kron(matrix1, U11)
+        time -= 1
+        i, j = j, i
+        matrix2 = np.dot(matrix1, matrix2)
+    # print(np.dot(matrix2, matrix1))
+    return np.dot(matrix2, matrix1)
+
+
 # father_node:父节点;children_list子节点;my_type:元电路对象;unitary矩阵,child=0减枝
 class EveryNode:
     def __init__(self, father_node, my_type, cost, unitary):
@@ -160,16 +188,14 @@ def type_circuit(n):
     type_t = [[cirq.T(LineQubit(i)), 1, matrix_type(i, n, T)] for i in range(n)]
     type_tdg = [[(cirq.T ** -1)(LineQubit(i)), 1, matrix_type(i, n, Tdg)] for i in range(1, n)]
     type_cx = [[cirq.CNOT(LineQubit(i), LineQubit(j)), 3, matrix_type1(i, j, n, NOT)] for i in range(n) for j in
-               range(n)
-               if i != j]
+               range(n) if i != j]
     type_cz = [[cirq.CZ(LineQubit(i), LineQubit(j)), 3, matrix_type1(i, j, n, Z)] for i in range(n) for j in
-               range(n)
-               if i != j]
-    type_swap = [[cirq.SWAP(LineQubit(i), LineQubit(j)), 9, matrix_type(i, n, S)] for i in range(n) for j in
+               range(n) if i != j]
+    type_swap = [[cirq.SWAP(LineQubit(i), LineQubit(j)), 9, matrix_type2(i, j, n, NOT)] for i in range(n) for j in
                  range(i+1, n)]
     type_all = type_x + type_h + type_z + type_s + type_t + type_sdg + type_tdg + type_cx + type_cz + type_swap
     # type_all = type_cx
-    # print(type_all)
+    print(type_all)
     show_circuit(type_all)
     print('一共{}种情况\n'.format(len(type_all)))
     return type_all
@@ -200,6 +226,12 @@ def make_circuit(truth_tuple, type_all, result_dict1):
     return circuit[::-1], min_total_cost
 
 
+def unitary_to_tuple(circuit_new_unitary):
+    unitary_tuple_new = [i for item in circuit_new_unitary for i in item]
+    unitary_tuple_new = tuple(unitary_tuple_new)
+    return unitary_tuple_new
+
+
 # 广度优先,循环寻找最优解(递归)
 # type_all:基本元情况； node:父节点
 def com_circuit(plies_node, plies_node1, type_all):
@@ -225,8 +257,7 @@ def two_queue(plies_node, type_all, result_dict1, reserve_dict1):
             else:
                 # 优化后 自己算的矩阵
                 circuit_new_unitary = simply_unity(np.dot(type_all[circuit_i][2], node.unitary))
-                unitary_tuple_new = [i for item in circuit_new_unitary for i in item]
-                unitary_tuple_new = tuple(unitary_tuple_new)
+                unitary_tuple_new = unitary_to_tuple(circuit_new_unitary)
                 node_cost = node.cost + type_all[circuit_i][1]
                 node_new = EveryNode(node, circuit_i, node_cost, circuit_new_unitary)
                 node.add_children(node_new)
@@ -237,14 +268,17 @@ def two_queue(plies_node, type_all, result_dict1, reserve_dict1):
                     # 修改非result的查找
                     circuit_list, min_total_cost = make_circuit(unitary_tuple_new, type_all, result_dict1)
                     circuit_list1, min_total_cost1 = make_circuit(unitary_tuple_new, type_all, reserve_dict1)
+                    print(circuit_list)
+                    print(circuit_list1)
                     circuit_list += circuit_list1
                     min_total_cost += min_total_cost1
                     circuit.append(circuit_list)
-                    check_result = (Swap == Result_unitary).all()
+                    check_result_unitary = circuit.unitary()
+                    check_result = (check_result_unitary == Result_unitary).all()
                     print(circuit)
                     print('此真正表最低代价为：{}'.format(min_total_cost))
-                    # print('验证电路矩阵为：{}'.format(circuit.unitary()))
-                    # print('初始电路矩阵为：{}'.format(Swap_unitary))
+                    print('验证电路矩阵为：\n{}'.format(check_result_unitary))
+                    print('初始电路矩阵为：\n{}'.format(Result_unitary))
                     print('验证矩阵相等吗:{}'.format(check_result))
                     return plies_node, 1
                 if unitary_tuple_new not in result_dict1:  # 新的解答
@@ -267,6 +301,9 @@ def init_truth(n):
     circuit_init_unitary = np.identity(2 ** n)
     node_0 = EveryNode(None, None, 0, circuit_init_unitary)
     print(Swap)
+    result_tuple = unitary_to_tuple(Result_unitary.getA().tolist())
+    print(result_tuple)
+    reserve_dict[result_tuple] = [0, None]
     node_1 = EveryNode(None, None, 0, Result_unitary)
     tree_queue = queue.Queue()
     tree_queue.put(node_0)

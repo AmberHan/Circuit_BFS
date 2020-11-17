@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f5998128-7b36-4c27-84e1-70966bdc50b7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BFS/Circuit_BFS3.py" beforeDir="false" afterPath="$PROJECT_DIR$/BFS/Circuit_BFS3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/COMMIT.md" beforeDir="false" afterPath="$PROJECT_DIR$/COMMIT.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +17,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="104" column="10" selection-start-line="104" selection-start-column="10" selection-end-line="104" selection-end-column="10" />
+            <state relative-caret-position="184">
+              <caret line="307" column="30" lean-forward="true" selection-start-line="307" selection-start-column="30" selection-end-line="307" selection-end-column="30" />
               <folding>
                 <element signature="e#132#143#0" expanded="true" />
               </folding>
@@ -26,24 +26,24 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/COMMIT.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor>
-                <caret column="2" lean-forward="true" selection-start-column="2" selection-end-column="2" />
+              <first_editor relative-caret-position="184">
+                <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
               </first_editor>
               <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="575">
-                <caret line="25" column="2" selection-start-line="25" selection-start-column="2" selection-end-line="25" selection-end-column="2" />
+              <first_editor relative-caret-position="56">
+                <caret line="26" column="22" lean-forward="true" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
               </first_editor>
               <second_editor />
             </state>
@@ -53,7 +53,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS1.1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
+            <state relative-caret-position="1219">
               <caret line="58" column="50" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="50" />
             </state>
           </provider>
@@ -97,6 +97,8 @@
       <find>node_re</find>
       <find>U</find>
       <find>Result_unitary</find>
+      <find>reserve_dict</find>
+      <find>result_dict</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -113,10 +115,10 @@
         <option value="$PROJECT_DIR$/BFS/Circuit_BFS1.py" />
         <option value="$PROJECT_DIR$/BFS/Circuit_BFS1.1.py" />
         <option value="$PROJECT_DIR$/BFS/Circuit_BFS2.py" />
-        <option value="$PROJECT_DIR$/BFS/Circuit_BFS3.py" />
         <option value="$PROJECT_DIR$/../个人简介/AmberHan/README.md" />
-        <option value="$PROJECT_DIR$/COMMIT.md" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/BFS/Circuit_BFS3.py" />
+        <option value="$PROJECT_DIR$/COMMIT.md" />
       </list>
     </option>
   </component>
@@ -321,12 +323,12 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15409055" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1310564" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.18827708" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.41740674" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.37477797" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -403,13 +405,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS3.py">
+    <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS1.1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="104" column="10" selection-start-line="104" selection-start-column="10" selection-end-line="104" selection-end-column="10" />
-          <folding>
-            <element signature="e#132#143#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1219">
+          <caret line="58" column="50" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -427,28 +426,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS1.1.py">
+    <entry file="file://$PROJECT_DIR$/BFS/Circuit_BFS3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="58" column="50" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/COMMIT.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor>
-            <caret column="2" lean-forward="true" selection-start-column="2" selection-end-column="2" />
-          </first_editor>
-          <second_editor />
+        <state relative-caret-position="184">
+          <caret line="307" column="30" lean-forward="true" selection-start-line="307" selection-start-column="30" selection-end-line="307" selection-end-column="30" />
+          <folding>
+            <element signature="e#132#143#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="575">
-            <caret line="25" column="2" selection-start-line="25" selection-start-column="2" selection-end-line="25" selection-end-column="2" />
+          <first_editor relative-caret-position="56">
+            <caret line="26" column="22" lean-forward="true" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/COMMIT.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="184">
+            <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
           </first_editor>
           <second_editor />
         </state>
