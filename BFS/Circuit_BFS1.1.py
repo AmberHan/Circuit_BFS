@@ -124,29 +124,40 @@ def init_truth(n):
     print('真值表可表达的情况数目:{}'.format(len(result_dict)))
 
 
-def main():
-    n = input('请输入电路线路数：\n')
-    n = int(n)
-    init_truth(n)
-    circuit = cirq.Circuit()
-    # 生成随机测试
-    my_truth = [i for i in range(2 ** n)]
-    random.shuffle(my_truth)
+def print_circuit(my_truth):
     # 寻找字典里找最优解
+    circuit = cirq.Circuit()
     circuit_list, min_total_cost = make_circuit(tuple(my_truth))
-    while len(circuit_list) == 0:
-        print('随机生成的输入：{}在目前去情况下无法生成电路'.format(my_truth))
-        random.shuffle(my_truth)
-        circuit_list, min_total_cost = make_circuit(tuple(my_truth))
+    # while len(circuit_list) == 0:
+    #     print('随机生成的输入：{}在目前去情况下无法生成电路'.format(my_truth))
+    #     random.shuffle(my_truth)
+    #     circuit_list, min_total_cost = make_circuit(tuple(my_truth))
     circuit.append(circuit_list)
     # 与cirq的校验
     circuit_unitary = circuit.unitary()
     check_unitary = unitary_list(circuit_unitary)
     print(circuit)
-    print(circuit_unitary)
+    # print(circuit_unitary)
     print('随机生成的输入为：{}'.format(my_truth))
     print('此真正表最低代价为：{}'.format(min_total_cost))
     print('校验真值表：{}'.format(check_unitary))
+
+
+def main():
+    n = input('请输入电路线路数：\n')
+    n = int(n)
+    init_truth(n)
+    # 生成随机测试
+    # my_truth = [i for i in range(2 ** n)]
+    # random.shuffle(my_truth)
+    my_truth = [0, 6, 2, 3, 4, 5, 1, 7]
+    my_truth1 = [0, 6, 2, 3, 4, 5, 7, 1]
+    my_truth2 = [6, 0, 2, 3, 4, 5, 1, 7]
+    my_truth3 = [6, 0, 2, 3, 4, 5, 7, 1]
+    print_circuit(my_truth)
+    print_circuit(my_truth1)
+    print_circuit(my_truth2)
+    print_circuit(my_truth3)
 
 
 if __name__ == '__main__':
