@@ -117,21 +117,21 @@ def init_truth(n):
     circuit_unitary = np.identity(2 ** n)
     node_0 = EveryNode(None, init_type, 0, circuit_unitary)
     # tree_queue = queue.Queue()
-    tree_queue =[node_0]
+    tree_queue = [node_0]
     com_circuit(tree_queue, type_circuit(n))
     print('(数组列表):[代价，node标号]')
     # print(result_dict)
     print('真值表可表达的情况数目:{}'.format(len(result_dict)))
 
 
+final_min_cost = 30
+final_list = []
+final_circuit_list = []
+
+
 def print_circuit(my_truth):
-    # 寻找字典里找最优解
     circuit = cirq.Circuit()
     circuit_list, min_total_cost = make_circuit(tuple(my_truth))
-    # while len(circuit_list) == 0:
-    #     print('随机生成的输入：{}在目前去情况下无法生成电路'.format(my_truth))
-    #     random.shuffle(my_truth)
-    #     circuit_list, min_total_cost = make_circuit(tuple(my_truth))
     circuit.append(circuit_list)
     # 与cirq的校验
     circuit_unitary = circuit.unitary()
@@ -143,6 +143,75 @@ def print_circuit(my_truth):
     print('校验真值表：{}'.format(check_unitary))
 
 
+def print_circuits(circuits_list):
+    circuit = cirq.Circuit()
+    circuit.append(circuits_list)
+    # 与cirq的校验
+    circuit_unitary = circuit.unitary()
+    check_unitary = unitary_list(circuit_unitary)
+    print(circuit)
+    # print(circuit_unitary)
+    print('随机生成的输入为：{}'.format(final_list))
+    print('此真正表最低代价为：{}'.format(final_min_cost))
+    print('校验真值表：{}'.format(check_unitary))
+
+
+def find_circuit(my_truth):
+    # 寻找字典里找最优解
+    global final_min_cost
+    global final_list
+    global final_circuit_list
+    # circuit = cirq.Circuit()
+    circuit_list, min_total_cost = make_circuit(tuple(my_truth))
+    if min_total_cost < final_min_cost:
+        final_min_cost = min_total_cost
+        final_circuit_list = circuit_list
+        final_list = my_truth
+    # while len(circuit_list) == 0:
+    #     print('随机生成的输入：{}在目前去情况下无法生成电路'.format(my_truth))
+    #     random.shuffle(my_truth)
+    #     circuit_list, min_total_cost = make_circuit(tuple(my_truth))
+    # circuit.append(circuit_list)
+    # 与cirq的校验
+    # circuit_unitary = circuit.unitary()
+    # check_unitary = unitary_list(circuit_unitary)
+    # print(circuit)
+    # # print(circuit_unitary)
+    # print('随机生成的输入为：{}'.format(my_truth))
+    # print('此真正表最低代价为：{}'.format(min_total_cost))
+    # print('校验真值表：{}'.format(check_unitary))
+
+
+total_truths = []
+even_index = [0, 1, 2, 4]
+
+
+def solve(rows, is_visit, one_truth):
+    if rows == 8:
+        total_truths.append(one_truth)
+        # return
+    else:
+        # 0 可放置， 1不能放；获取为0的位
+        available_positions = 0x0f & (~is_visit)  # 获取可访问的位数 偶数低四位 0000 1111
+        leave_positions = 0xf0 & (~is_visit)  # 获取可访问的位数 奇数高四位  1111 0000
+        flag, diff = 0, 0
+        # leave_positions = leave_positions1
+        if rows not in even_index:
+            available_positions, leave_positions = leave_positions, available_positions
+            flag, diff = 1, 1
+        available_positions1 = available_positions
+        while available_positions:
+            position = available_positions & (-available_positions)  # 取最后一位1
+            next_position = (~position) & available_positions1
+            this_index = bin(position - 1).count("1")  # 0001 -> 编号0
+            if flag:
+                this_index -= 4
+            one_truth1 = one_truth[:]
+            one_truth1.append(2 * this_index + diff)
+            available_positions = available_positions & (available_positions - 1)  # 清空最后一位1
+            solve(rows + 1, ~(next_position | leave_positions), one_truth1)
+
+
 def main():
     n = input('请输入电路线路数：\n')
     n = int(n)
@@ -150,14 +219,14 @@ def main():
     # 生成随机测试
     # my_truth = [i for i in range(2 ** n)]
     # random.shuffle(my_truth)
-    my_truth = [0, 6, 2, 3, 4, 5, 1, 7]
-    my_truth1 = [0, 6, 2, 3, 4, 5, 7, 1]
-    my_truth2 = [6, 0, 2, 3, 4, 5, 1, 7]
-    my_truth3 = [6, 0, 2, 3, 4, 5, 7, 1]
-    print_circuit(my_truth)
-    print_circuit(my_truth1)
-    print_circuit(my_truth2)
-    print_circuit(my_truth3)
+    # [0,1,2,4]->[0,2,4,6]可为偶数
+    solve(0, 0, [])
+    print(total_truths)
+    print(len(total_truths))
+    for my_truth in total_truths:
+        find_circuit(my_truth)
+    print_circuits(final_circuit_list)
+    # print_circuit(final_list)
 
 
 if __name__ == '__main__':
