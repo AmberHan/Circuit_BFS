@@ -161,7 +161,6 @@ def find_circuit(my_truth):
     global final_min_cost
     global final_list
     global final_circuit_list
-    # circuit = cirq.Circuit()
     circuit_list, min_total_cost = make_circuit(tuple(my_truth))
     if min_total_cost < final_min_cost:
         final_min_cost = min_total_cost
@@ -189,7 +188,6 @@ even_index = [0, 1, 2, 4]
 def solve(rows, is_visit, one_truth):
     if rows == 8:
         total_truths.append(one_truth)
-        # return
     else:
         # 0 可放置， 1不能放；获取为0的位
         available_positions = 0x0f & (~is_visit)  # 获取可访问的位数 偶数低四位 0000 1111
@@ -212,6 +210,27 @@ def solve(rows, is_visit, one_truth):
             solve(rows + 1, ~(next_position | leave_positions), one_truth1)
 
 
+def generate(row, one_truth, even, odd):
+    if row == 8:
+        total_truths.append(one_truth)
+    else:
+        length = len(odd)
+        if row in even_index:
+            length = len(even)
+        for index in range(length):
+            need = odd[:]
+            flag = 0
+            if row in even_index:
+                flag = 1
+                need = even[:]
+            one_truth1 = one_truth[:]
+            one_truth1.append(need.pop(index))
+            if flag:
+                generate(row + 1, one_truth1, need, odd[:])
+            else:
+                generate(row + 1, one_truth1, even, need[:])
+
+
 def main():
     n = input('请输入电路线路数：\n')
     n = int(n)
@@ -220,13 +239,14 @@ def main():
     # my_truth = [i for i in range(2 ** n)]
     # random.shuffle(my_truth)
     # [0,1,2,4]->[0,2,4,6]可为偶数
-    solve(0, 0, [])
+    # solve(0, 0, [])
+    generate(0, [], [0, 2, 4, 6], [1, 3, 5, 7])
     print(total_truths)
     print(len(total_truths))
     for my_truth in total_truths:
         find_circuit(my_truth)
     print_circuits(final_circuit_list)
-    # print_circuit(final_list)
+    print_circuit(final_list)
 
 
 if __name__ == '__main__':
